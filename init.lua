@@ -111,6 +111,13 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+-- Navigation keymaps
+vim.keymap.set('n', '<leader>nn', ':bnext<Enter>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<leader>np', ':bprevious<Enter>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<leader>nq', ':bdelete<Enter>', { desc = 'Quit current buffer' })
+vim.keymap.set('n', '<leader>no', ':new<Enter><C-w>o', { desc = 'New window with empty buffer' })
+vim.keymap.set('n', '<leader>nt', ':new<Enter><C-w>o:term<Enter>i', { desc = '[New window with terminal buffer' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
