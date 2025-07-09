@@ -46,14 +46,10 @@ return {
       },
       strategies = {
         chat = {
-          adapter = {
-            name = 'copilot',
-          },
+          adapter = 'copilot',
         },
         code = {
-          adapter = {
-            name = 'copilot',
-          },
+          adapter = 'copilot',
         },
       },
     }
