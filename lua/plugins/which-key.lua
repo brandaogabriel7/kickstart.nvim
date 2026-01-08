@@ -44,11 +44,13 @@ return { -- Useful plugin to show you pending keybinds.
 
     -- Document existing key chains
     spec = {
+      { '<leader>a', group = '[A]I CodeCompanion' },
       { '<leader>s', group = '[S]earch' },
       { '<leader>n', group = '[N]avigation' },
       { '<leader>T', group = '[T]oggle' },
       { '<leader>t', group = '[T]est' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+      { '<leader>c', group = '[C]laude Code' },
     },
   },
 }

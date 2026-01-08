@@ -1,59 +1,5 @@
 return {
   'olimorris/codecompanion.nvim',
-  opts = {},
-  config = function()
-    require('codecompanion').setup {
-      extensions = {
-        history = {
-          enabled = true,
-          opts = {
-            -- Keymap to open history from chat buffer (default: gh)
-            keymap = 'gh',
-            -- Keymap to save the current chat manually (when auto_save is disabled)
-            save_chat_keymap = 'sc',
-            -- Save all chats by default (disable to save only manually using 'sc')
-            auto_save = true,
-            -- Number of days after which chats are automatically deleted (0 to disable)
-            expiration_days = 0,
-            -- Picker interface (auto resolved to a valid picker)
-            picker = 'telescope', --- ("telescope", "snacks", "fzf-lua", or "default")
-            -- Customize picker keymaps (optional)
-            picker_keymaps = {
-              rename = { n = 'r', i = '<M-r>' },
-              delete = { n = 'd', i = '<M-d>' },
-              duplicate = { n = '<C-y>', i = '<C-y>' },
-            },
-            ---Automatically generate titles for new chats
-            auto_generate_title = true,
-            title_generation_opts = {
-              ---Adapter for generating titles (defaults to current chat adapter)
-              adapter = nil, -- "copilot"
-              ---Model for generating titles (defaults to current chat model)
-              model = nil, -- "gpt-4o"
-              ---Number of user prompts after which to refresh the title (0 to disable)
-              refresh_every_n_prompts = 0, -- e.g., 3 to refresh after every 3rd user prompt
-              ---Maximum number of times to refresh the title (default: 3)
-              max_refreshes = 3,
-            },
-            ---On exiting and entering neovim, loads the last chat on opening chat
-            continue_last_chat = false,
-            ---When chat is cleared with `gx` delete the chat from history
-            delete_on_clearing_chat = false,
-            ---Directory path to save the chats
-            dir_to_save = vim.fn.stdpath 'data' .. '/codecompanion-history',
-          },
-        },
-      },
-      strategies = {
-        chat = {
-          adapter = 'copilot',
-        },
-        code = {
-          adapter = 'copilot',
-        },
-      },
-    }
-  end,
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
@@ -63,4 +9,60 @@ return {
       ft = { 'markdown', 'codecompanion' },
     },
   },
+  keys = {
+    { '<leader>aa', '<cmd>CodeCompanionActions<cr>', mode = { 'n', 'v' }, desc = 'CodeCompanion Actions' },
+    { '<leader>ac', '<cmd>CodeCompanionChat Toggle<cr>', mode = { 'n', 'v' }, desc = 'CodeCompanion Chat Toggle' },
+    { '<leader>ai', '<cmd>CodeCompanion<cr>', mode = { 'n', 'v' }, desc = 'CodeCompanion Inline' },
+    { '<leader>ap', '<cmd>CodeCompanionChat Add<cr>', mode = 'v', desc = 'Add selection to Chat' },
+  },
+  config = function()
+    require('codecompanion').setup {
+      strategies = {
+        chat = {
+          adapter = 'copilot',
+        },
+        inline = {
+          adapter = 'copilot',
+        },
+        cmd = {
+          adapter = 'copilot',
+        },
+      },
+      display = {
+        chat = {
+          window = {
+            layout = 'vertical',
+            width = 0.4,
+          },
+        },
+      },
+      extensions = {
+        history = {
+          enabled = true,
+          opts = {
+            keymap = 'gh',
+            save_chat_keymap = 'sc',
+            auto_save = true,
+            expiration_days = 0,
+            picker = 'telescope',
+            picker_keymaps = {
+              rename = { n = 'r', i = '<M-r>' },
+              delete = { n = 'd', i = '<M-d>' },
+              duplicate = { n = '<C-y>', i = '<C-y>' },
+            },
+            auto_generate_title = true,
+            title_generation_opts = {
+              adapter = nil,
+              model = nil,
+              refresh_every_n_prompts = 0,
+              max_refreshes = 3,
+            },
+            continue_last_chat = false,
+            delete_on_clearing_chat = false,
+            dir_to_save = vim.fn.stdpath 'data' .. '/codecompanion-history',
+          },
+        },
+      },
+    }
+  end,
 }
