@@ -199,17 +199,30 @@ return {
       pyright = {
         settings = {
           pyright = {
-            disableOrganizeImport = true,
+            disableOrganizeImports = true, -- ruff handles imports
           },
           python = {
             analysis = {
-              ignore = { '*' },
+              typeCheckingMode = 'basic', -- 'off', 'basic', 'standard', or 'strict'
+              -- Disable diagnostics that ruff handles better
+              diagnosticSeverityOverrides = {
+                reportUnusedImport = 'none',
+                reportUnusedVariable = 'none',
+                reportUnusedClass = 'none',
+                reportUnusedFunction = 'none',
+                reportDuplicateImport = 'none',
+              },
             },
           },
         },
       },
-      mypy = {},
-      ruff = {},
+      ruff = {
+        -- Ruff handles linting and import organization
+        on_attach = function(client, _)
+          -- Disable hover in favor of pyright
+          client.server_capabilities.hoverProvider = false
+        end,
+      },
       dockerls = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
