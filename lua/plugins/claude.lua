@@ -6,7 +6,8 @@ return {
   config = function()
     require('claude-code').setup {
       window = {
-        position = 'current', -- Full window (replaces current buffer)
+        position = 'vertical',
+        split_ratio = 0.5,
       },
       keymaps = {
         toggle = {
