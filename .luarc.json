@@ -1,0 +1,12 @@
+{
+  "workspace": {
+    "library": ["${3rd}/luv/library"],
+    "checkThirdParty": false
+  },
+  "runtime": {
+    "version": "LuaJIT"
+  },
+  "diagnostics": {
+    "globals": ["vim"]
+  }
+}
