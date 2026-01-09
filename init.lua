@@ -118,6 +118,17 @@ vim.keymap.set('n', '<leader>nq', ':bdelete<Enter>', { desc = 'Quit current buff
 vim.keymap.set('n', '<leader>no', ':new<Enter><C-w>o', { desc = 'New window with empty buffer' })
 vim.keymap.set('n', '<leader>nt', ':new<Enter><C-w>o:term<Enter>i', { desc = '[New window with terminal buffer' })
 
+-- Toggle clipboard sync with system
+vim.keymap.set('n', '<leader>Tc', function()
+  if vim.o.clipboard == 'unnamedplus' then
+    vim.o.clipboard = ''
+    vim.notify('Clipboard: independent', vim.log.levels.INFO)
+  else
+    vim.o.clipboard = 'unnamedplus'
+    vim.notify('Clipboard: synced with system', vim.log.levels.INFO)
+  end
+end, { desc = 'Toggle [C]lipboard sync' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
