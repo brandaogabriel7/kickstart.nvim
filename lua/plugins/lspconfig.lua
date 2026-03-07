@@ -196,6 +196,17 @@ return {
     local servers = {
       -- clangd = {},
       gopls = {},
+      jsonls = {},
+      yamlls = {
+        settings = {
+          yaml = {
+            schemas = {
+              ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
+              ['https://json.schemastore.org/docker-compose.json'] = 'docker-compose*.yml',
+            },
+          },
+        },
+      },
       pyright = {
         settings = {
           pyright = {

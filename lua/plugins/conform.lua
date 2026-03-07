@@ -35,11 +35,21 @@ return { -- Autoformat
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
+      typescript = { 'prettierd', 'prettier', stop_after_first = true },
       -- I want to format markdown files following markdownlint rules, but only  for markdown files
       markdown = { 'markdownlint', stop_after_first = true },
 
       -- golang
       go = { 'gofumpt', 'goimports', stop_after_first = true },
+
+      -- shell scripts
+      sh = { 'shfmt' },
+      bash = { 'shfmt' },
+
+      -- JSON/YAML
+      json = { 'prettierd', 'prettier', stop_after_first = true },
+      jsonc = { 'prettierd', 'prettier', stop_after_first = true },
+      yaml = { 'prettierd', 'prettier', stop_after_first = true },
     },
   },
 }

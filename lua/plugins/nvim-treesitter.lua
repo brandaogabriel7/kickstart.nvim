@@ -19,6 +19,16 @@ return { -- Highlight, edit, and navigate code
       'python',
       'javascript',
       'typescript',
+      -- Go ecosystem
+      'go',
+      'gomod',
+      'gowork',
+      'gosum',
+      -- Docker/API work
+      'dockerfile',
+      'yaml',
+      'json',
+      'jsonc',
     },
     -- Autoinstall languages that are not installed
     auto_install = true,
