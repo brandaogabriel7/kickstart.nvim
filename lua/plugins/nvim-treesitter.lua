@@ -3,6 +3,11 @@ return { -- Highlight, edit, and navigate code
   build = ':TSUpdate',
   main = 'nvim-treesitter.configs', -- Sets main module to use for opts
   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+  config = function(_, opts)
+    -- Prefer git instead of curl in order to improve connectivity in some environments
+    require('nvim-treesitter.install').prefer_git = true
+    require('nvim-treesitter.configs').setup(opts)
+  end,
   opts = {
     ensure_installed = {
       'bash',
